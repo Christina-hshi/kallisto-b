@@ -1,0 +1,9 @@
+{
+	"n_targets": 15,
+	"n_bootstraps": 0,
+	"n_processed": 10000,
+	"kallisto_version": "0.43.1",
+	"index_version": 10,
+	"start_time": "Sat Mar  9 16:57:02 2019",
+	"call": "../build/src/kallisto pseudo -i trans.idx -o pseudo --pseudobam -t 1 reads_1.fastq.gz reads_2.fastq.gz"
+}

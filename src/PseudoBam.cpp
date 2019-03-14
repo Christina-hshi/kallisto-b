@@ -10,9 +10,9 @@ void outputPseudoBam(const KmerIndex &index, const std::vector<int> &u,
     bool paired) {
 
   //static char buf1[32768];
-  char buf1[110];
+  char buf1[slen1+1];
   //static char buf2[32768];
-  char buf2[110];
+  char buf2[slen2+1];
   //static char cig_[1000];
   char cig_[200];
   char *cig = &cig_[0];
@@ -279,9 +279,12 @@ void outputPseudoBam(const KmerIndex &index, const std::vector<int> &u,
     const char *s2, const char *n2, const char *q2, int slen2, int nlen2, const std::vector<std::pair<KmerEntry,int>>& v2,
     bool paired, FILE* fout) {
 
-  static char buf1[32768];
-  static char buf2[32768];
-  static char cig_[1000];
+  //static char buf1[32768];
+  char buf1[slen1+1];
+  //static char buf2[32768];
+  char buf2[slen2+1];
+  //static char cig_[1000];
+  char cig_[200];
   char *cig = &cig_[0];
 
 

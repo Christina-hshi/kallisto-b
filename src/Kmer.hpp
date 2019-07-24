@@ -28,6 +28,7 @@ class Kmer {
 
   Kmer();
   Kmer(const Kmer& o);
+  Kmer(Kmer& o);
   explicit Kmer(const char *s);
 
 

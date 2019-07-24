@@ -111,6 +111,12 @@ Kmer::Kmer(const Kmer& o) {
   }
 }
 
+Kmer::Kmer(Kmer& o) {
+  //memcpy(bytes,o.bytes,MAX_K/4);
+  for (size_t i = 0; i < MAX_K/32; i++) {
+    longs[i] = o.longs[i];
+  }
+}
 
 // use:  km = Kmer(s);
 // pre:  s[0],...,s[k] are all equal to 'A','C','G' or 'T'

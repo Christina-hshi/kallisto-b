@@ -1196,14 +1196,14 @@ donejumping:
 //      km is the p-th k-mer of a read
 //      val.contig maps to tr
 //post: km is found in position pos (1-based) on the sense/!sense strand of tr
-std::pair<int,bool> KmerIndex::findPosition(int tr, Kmer km, KmerEntry val, int p) const {
+std::pair<int,bool> KmerIndex::findPosition(int tr, const Kmer& km, KmerEntry val, int p) const {
   bool fw = (km == km.rep());
   bool csense = (fw == val.isFw());
 
   int trpos = -1;
   bool trsense = true;
   if (val.contig < 0) {
-    return {-1, true};
+    return std::pair<int, bool>(-1, true);
   }
   const Contig &c = dbGraph.contigs[val.contig];
   for (auto x : c.transcripts) {
@@ -1215,21 +1215,21 @@ std::pair<int,bool> KmerIndex::findPosition(int tr, Kmer km, KmerEntry val, int 
   }
 
   if (trpos == -1) {
-    return {-1,true};
+    return std::pair<int, bool>(-1,true);
   }
 
 
   if (trsense) {
     if (csense) {
-      return {trpos + val.getPos() - p + 1, csense}; // 1-based, case I
+      return std::pair<int, bool>(trpos + val.getPos() - p + 1, csense); // 1-based, case I
     } else {
-      return {trpos + val.getPos() + k + p, csense}; // 1-based, case III
+      return std::pair<int, bool>(trpos + val.getPos() + k + p, csense); // 1-based, case III
     }
   } else {
     if (csense) {
-      return {trpos + (c.length - val.getPos() -1) + k + p, !csense};  // 1-based, case IV
+      return std::pair<int, bool>(trpos + (c.length - val.getPos() -1) + k + p, !csense);  // 1-based, case IV
     } else {
-      return {trpos + (c.length - val.getPos())  - p, !csense}; // 1-based, case II
+      return std::pair<int, bool>(trpos + (c.length - val.getPos())  - p, !csense); // 1-based, case II
     }
   }
 }

@@ -10,9 +10,10 @@ void outputPseudoBam(const KmerIndex &index, const std::vector<int> &u,
     bool paired) {
 
   //static char buf1[32768];
-  char buf1[slen1+1];
+  size_t buf_size = (slen1>slen2?slen1:slen2)+1;
+  char buf1[buf_size];
   //static char buf2[32768];
-  char buf2[slen2+1];
+  char buf2[buf_size];
   //static char cig_[1000];
   char cig_[200];
   char *cig = &cig_[0];
@@ -50,7 +51,7 @@ void outputPseudoBam(const KmerIndex &index, const std::vector<int> &u,
     }
   } else {
     if (paired) {
-      string output_seq="";
+      //string output_seq="";
       int flag1 = 0x01 + 0x40;
       int flag2 = 0x01 + 0x80;
 
@@ -312,7 +313,7 @@ void outputPseudoBam(const KmerIndex &index, const std::vector<int> &u,
     }
   } else {
     if (paired) {
-      string output_seq="";
+      //string output_seq="";
       int flag1 = 0x01 + 0x40;
       int flag2 = 0x01 + 0x80;
 
